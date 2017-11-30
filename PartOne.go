@@ -18,6 +18,11 @@ func ElizaResponse(input string)string{
 		return "Why don’t you tell me more about your father?"
 	}
 	
+	re := regexp.MustCompile(`(?i).*\bI am\b|\bI'm\b|\bIm\b.*`)
+	if matched := re.MatchString(input); matched {
+		return re.ReplaceAllString(input, "How do you know you are $1")
+	}
+	
 	answers := []string{`I'm not sure what your trying to say. Could you explain it to me?`, `How does that make you feel?`, `Why do you say that?`}
 	
 	return answers[rand.Intn(len(answers))]
@@ -45,5 +50,22 @@ func main() {
 	fmt.Println("My grandfather was French!")
 	fmt.Println(ElizaResponse("My grandfather was French!"))
 	fmt.Println()
+	
+	fmt.Println("Im happy.")
+	fmt.Println(ElizaResponse("I am happy."))
+	fmt.Println()
+
+	fmt.Println("I'm not happy with your responses.")
+	fmt.Println(ElizaResponse("I am not happy with your responses."))
+	fmt.Println()
+
+	fmt.Println("I am not sure that you understand the effect that your questions are having on me.")
+	fmt.Println(ElizaResponse("I am not sure that you understand the effect that your questions are having on me."))
+	fmt.Println()
+
+	fmt.Println("I am supposed to just take what you’re saying at face value?")
+	fmt.Println(ElizaResponse("I am supposed to just take what you’re saying at face value?"))
+	fmt.Println()
+
 	
 }
