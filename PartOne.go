@@ -3,7 +3,7 @@ package main
 import (
 
 	"fmt"
-	//"regexp"
+	"regexp"
 	"time"
 	"math/rand"
 
@@ -14,10 +14,13 @@ func ElizaResponse(input string)string{
 
 	rand.Seed(time.Now().UnixNano())
 	
+	if matched, _ := regexp.MatchString(`(?i).*\bfather\b.*`, input); matched {
+		return "Why don’t you tell me more about your father?"
+	}
+	
 	answers := []string{`I'm not sure what your trying to say. Could you explain it to me?`, `How does that make you feel?`, `Why do you say that?`}
 	
 	return answers[rand.Intn(len(answers))]
-	
 	
 }
 
