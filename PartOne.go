@@ -10,12 +10,13 @@ import (
 
 )
 
+//Code based on https://gist.github.com/ianmcloughlin/c4c2b8dc586d06943f54b75d9e2250fe
 func pronounRefect(input string) string {
-	//Splitting the input on word.
+	
 	re := regexp.MustCompile(`\b`)
 	tokens := re.Split(input, -1)
 	
-	// List of the reflections.
+	// Reflection map to switch pro-nouns
 	reflectionMap := [][]string{
 		{`I`, `you`},
 		{`me`, `you`},
@@ -25,7 +26,7 @@ func pronounRefect(input string) string {
 		{`am`,`are`},
 	}
 
-	//Looping through each token, reflecting it if there's a match.
+	//Looping through each word reflecting it if there's a match.
 	for i, token := range tokens {
 		for _, reflectionMap := range reflectionMap {
 			if matched, _ := regexp.MatchString(reflectionMap[0], token); matched {
@@ -35,7 +36,7 @@ func pronounRefect(input string) string {
 		}
 	}
 	
-	//Putting the tokens back together.
+	//Putting the words back together.
 	return strings.Join(tokens, ``)
 }
 
