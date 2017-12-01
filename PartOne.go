@@ -19,7 +19,7 @@ func pronounRefect(input string) string {
 	reflectionMap := [][]string{
 		{`I`, `you`},
 		{`me`, `you`},
-		{`you`, `me`},
+		{`you`, `my`},
 		{`my`, `your`},
 		{`your`, `my`},
 		{`am`,`are`},
@@ -92,13 +92,16 @@ func main() {
 	fmt.Println("I am not sure that you understand the effect that your questions are having on me.")
 	fmt.Println(ElizaResponse("I am not sure that you understand the effect that your questions are having on me."))
 	fmt.Println()
-
+	
 	fmt.Println("I am supposed to just take what you’re saying at face value?")
 	fmt.Println(ElizaResponse("I am supposed to just take what you’re saying at face value?"))
 	fmt.Println()
 	
 	//for reflectionMap
-	fmt.Println(pronounRefect("I am very tired today."))
+	fmt.Println(pronounRefect("I am very tired today.")) 
+	fmt.Println(pronounRefect("I am your creator"))
+	fmt.Println(pronounRefect("my favourite food is bread."))
+	fmt.Println(pronounRefect("your creator was keith."))
 
 	
 }
