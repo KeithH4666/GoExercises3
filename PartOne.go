@@ -6,8 +6,38 @@ import (
 	"regexp"
 	"time"
 	"math/rand"
+	"strings"
 
 )
+
+func pronounRefect(input string) string {
+	//Splitting the input on word.
+	re := regexp.MustCompile(`\b`)
+	tokens := re.Split(input, -1)
+	
+	// List of the reflections.
+	reflectionMap := [][]string{
+		{`I`, `you`},
+		{`me`, `you`},
+		{`you`, `me`},
+		{`my`, `your`},
+		{`your`, `my`},
+		{`am`,`are`},
+	}
+
+	//Looping through each token, reflecting it if there's a match.
+	for i, token := range tokens {
+		for _, reflectionMap := range reflectionMap {
+			if matched, _ := regexp.MatchString(reflectionMap[0], token); matched {
+				tokens[i] = reflectionMap[1]
+				break
+			}
+		}
+	}
+	
+	//Putting the tokens back together.
+	return strings.Join(tokens, ``)
+}
 
 
 func ElizaResponse(input string)string{
@@ -66,6 +96,9 @@ func main() {
 	fmt.Println("I am supposed to just take what you’re saying at face value?")
 	fmt.Println(ElizaResponse("I am supposed to just take what you’re saying at face value?"))
 	fmt.Println()
+	
+	//for reflectionMap
+	fmt.Println(pronounRefect("I am very tired today."))
 
 	
 }
